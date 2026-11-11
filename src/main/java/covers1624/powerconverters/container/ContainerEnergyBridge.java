@@ -1,12 +1,12 @@
 package covers1624.powerconverters.container;
 
-import covers1624.lib.inventory.InventoryUtils;
 import covers1624.powerconverters.network.PacketPipeline;
 import covers1624.powerconverters.tile.main.TileEntityEnergyBridge;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 public class ContainerEnergyBridge extends Container {
@@ -19,7 +19,18 @@ public class ContainerEnergyBridge extends Container {
         player = inventoryPlayer.player;
         energyBridge = bridge;
         // InventoryUtils.bindPlayerInventory(this, inventoryPlayer, 44, 174);
-        InventoryUtils.bindPlayerInventory(this, inventoryPlayer, 8, 113);
+        bindPlayerInventory(inventoryPlayer, 8, 113);
+    }
+
+    private void bindPlayerInventory(InventoryPlayer inventoryPlayer, int x, int y) {
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 9; col++) {
+                addSlotToContainer(new Slot(inventoryPlayer, col + row * 9 + 9, x + col * 18, y + row * 18));
+            }
+        }
+        for (int col = 0; col < 9; col++) {
+            addSlotToContainer(new Slot(inventoryPlayer, col, x + col * 18, y + 58));
+        }
     }
 
     @Override

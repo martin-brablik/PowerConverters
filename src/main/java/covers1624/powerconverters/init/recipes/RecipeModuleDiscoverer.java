@@ -1,8 +1,8 @@
 package covers1624.powerconverters.init.recipes;
 
 import com.google.common.collect.ImmutableList;
-import covers1624.lib.repack.codechicken.core.ClassDiscoverer;
-import covers1624.lib.repack.codechicken.core.IStringMatcher;
+import codechicken.core.ClassDiscoverer;
+import codechicken.core.IStringMatcher;
 import covers1624.powerconverters.api.recipe.AbstractRecipeModule;
 import covers1624.powerconverters.util.LogHelper;
 import cpw.mods.fml.common.Loader;

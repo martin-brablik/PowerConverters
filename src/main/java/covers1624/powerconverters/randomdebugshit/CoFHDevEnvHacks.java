@@ -1,6 +1,6 @@
 package covers1624.powerconverters.randomdebugshit;
 
-import covers1624.lib.asm.ASMUtils;
+import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
@@ -16,7 +16,7 @@ public class CoFHDevEnvHacks implements IClassTransformer {
     @Override
     public byte[] transform(String name, String s1, byte[] bytes) {
 
-        if (!ASMUtils.obfuscated) {
+        if (Boolean.TRUE.equals(Launch.blackboard.get("fml.deobfuscatedEnvironment"))) {
             try {
                 if (name.equals("net.minecraft.world.World")) {
                     ClassNode classNode = new ClassNode();

@@ -1,6 +1,6 @@
 package covers1624.powerconverters.util;
 
-import covers1624.lib.handler.ConfigurationHandler;
+import covers1624.powerconverters.handler.ConfigurationHandler;
 import covers1624.powerconverters.reference.Reference;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

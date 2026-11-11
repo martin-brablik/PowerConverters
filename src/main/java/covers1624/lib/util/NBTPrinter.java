@@ -1,5 +1,6 @@
 package covers1624.lib.util;
 
+import covers1624.powerconverters.util.LogHelper;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;

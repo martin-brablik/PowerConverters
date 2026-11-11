@@ -1,7 +1,7 @@
 package covers1624.lib.discovery;
 
 import covers1624.lib.api.recipe.IRecipeNBTLogic;
-import covers1624.lib.util.LogHelper;
+import covers1624.powerconverters.util.LogHelper;
 import cpw.mods.fml.common.Loader;
 
 import java.util.HashMap;

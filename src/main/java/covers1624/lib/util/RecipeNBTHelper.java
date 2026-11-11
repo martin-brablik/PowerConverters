@@ -1,5 +1,6 @@
 package covers1624.lib.util;
 
+import covers1624.powerconverters.util.LogHelper;
 import covers1624.lib.api.recipe.IRecipeNBTLogic;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
