@@ -70,15 +70,15 @@ public class TileEntityIndustrialCraftConsumer extends TileEntityEnergyConsumer<
 
     @Override
     public double injectEnergy(ForgeDirection directionFrom, double realAmount, double voltage) {
-        // Disable explosions for now. TODO
-        //if (amount > getSinkTier()) {
-        //	Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
-        //	int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-        //
-        //	worldObj.setBlockToAir(xCoord, yCoord, zCoord);
-        //	block.dropBlockAsItem(worldObj, xCoord, yCoord, zCoord, meta, 0);
-        //	return amount;
-        //}
+        // Overvoltage: a source of a higher tier (LV < MV < HV < EV) than this consumer blows it up.
+        // The packet size is compared against the max input of this consumer's tier, not against the tier number.
+        if (realAmount > getMaxInputPacket()) {
+            if (!worldObj.isRemote) {
+                worldObj.setBlockToAir(xCoord, yCoord, zCoord);
+                worldObj.createExplosion(null, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, 1.0F + getSinkTier(), true);
+            }
+            return 0;
+        }
 
         double pcuNotStored = storeEnergy(realAmount * PowerSystems.powerSystemIndustrialCraft.getScaleAmmount(), false);
         double euNotStored = pcuNotStored / PowerSystems.powerSystemIndustrialCraft.getScaleAmmount();
@@ -93,6 +93,13 @@ public class TileEntityIndustrialCraftConsumer extends TileEntityEnergyConsumer<
         }
 
         return euNotStored;
+    }
+
+    /**
+     * Largest EU packet this consumer accepts without exploding, based on its tier (LV 32, MV 128, HV 512, EV 2048).
+     */
+    private double getMaxInputPacket() {
+        return PowerSystems.powerSystemIndustrialCraft.getVoltageValues()[getVoltageIndex()];
     }
 
     @Override
